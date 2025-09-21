@@ -1,15 +1,6 @@
 import React from 'react';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  Camera, 
-  Edit3, 
-  Search, 
-  ChevronRight,
-  LogOut,
-  Shield
-} from 'lucide-react';
+// @ts-ignore - local environment may not resolve lucide-react types
+import { User, Mail, Phone, Camera, Edit3, Search, ChevronRight, LogOut, Shield } from 'lucide-react';
 
 interface SettingsPageProps {
   user: any;
@@ -19,9 +10,9 @@ interface SettingsPageProps {
 
 export default function SettingsPage({ user, userProfile, onSignOut }: SettingsPageProps) {
   return (
-    <div className="flex-1 bg-black overflow-y-auto">
+    <div className="flex-1 overflow-y-auto">
       {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4">
+      <div className="brand-header px-4 py-4 border-b border-white/10">
         <div>
           <h1 className="text-white text-xl font-semibold">Settings</h1>
           <p className="text-white/80 text-sm">Manage your Sun Devil Match experience</p>
@@ -30,7 +21,7 @@ export default function SettingsPage({ user, userProfile, onSignOut }: SettingsP
 
       <div className="px-4 py-6">
         {/* Account Section */}
-        <div className="bg-gray-900 rounded-2xl p-1 mb-6">
+        <div className="glass-card rounded-2xl p-1 mb-6">
           <div className="p-5">
             <div className="flex items-center space-x-3 mb-6">
               <User size={20} className="text-gray-400" />
@@ -91,7 +82,7 @@ export default function SettingsPage({ user, userProfile, onSignOut }: SettingsP
         </div>
 
         {/* Discovery Preferences Section */}
-        <div className="bg-gray-900 rounded-2xl p-1 mb-6">
+        <div className="glass-card rounded-2xl p-1 mb-6">
           <div className="p-5">
             <div className="flex items-center space-x-3 mb-6">
               <Search size={20} className="text-gray-400" />
@@ -137,7 +128,7 @@ export default function SettingsPage({ user, userProfile, onSignOut }: SettingsP
         </div>
 
         {/* Privacy & Safety */}
-        <div className="bg-gray-900 rounded-2xl p-1 mb-6">
+        <div className="glass-card rounded-2xl p-1 mb-6">
           <div className="p-5">
             <div className="flex items-center space-x-3 mb-4">
               <Shield size={20} className="text-gray-400" />
