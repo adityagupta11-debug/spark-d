@@ -16,7 +16,7 @@ export function MatchesScreen({ matches, onPlanDate }: MatchesScreenProps) {
         <div className="text-6xl mb-4">💔</div>
         <h2 className="text-xl mb-2">No matches yet</h2>
         <p className="text-muted-foreground text-center">
-          Keep swiping to find your perfect Sun Devil match!
+          Keep swiping to find your perfect Spark’d match!
         </p>
       </div>
     );
