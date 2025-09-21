@@ -34,13 +34,13 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
   return (
     <div className="min-h-screen bg-black flex flex-col">
       {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4 flex-shrink-0">
+      <div className="brand-header px-4 py-4 flex-shrink-0">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+          <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center shadow-md">
             <span className="text-white text-lg">🌵</span>
           </div>
           <div>
-            <h1 className="text-white font-semibold text-lg">Sun Devil Match</h1>
+            <h1 className="text-white font-semibold text-lg tracking-wide">Sun Devil Match</h1>
             <p className="text-white/80 text-sm">ASU Dating & Date Planning</p>
           </div>
         </div>
@@ -52,13 +52,13 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
       </div>
 
       {/* Bottom Navigation */}
-      <div className="bg-black border-t border-gray-800 flex-shrink-0">
+      <div className="bottom-nav flex-shrink-0">
         <div className="flex">
           <button
             onClick={() => setActiveTab('discover')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'discover' 
-                ? 'bg-[#8B4B6B] text-white' 
+                ? 'active-tab' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -70,7 +70,7 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
             onClick={() => setActiveTab('matches')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'matches' 
-                ? 'bg-[#8B4B6B] text-white' 
+                ? 'active-tab' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -82,7 +82,7 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
             onClick={() => setActiveTab('profile')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'profile' 
-                ? 'bg-[#8B4B6B] text-white' 
+                ? 'active-tab' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -94,7 +94,7 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
             onClick={() => setActiveTab('settings')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'settings' 
-                ? 'bg-[#8B4B6B] text-white' 
+                ? 'active-tab' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >

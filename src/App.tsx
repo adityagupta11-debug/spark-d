@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import campusImage from './assets/24b0ce647cc38b3904beeda35147b930b1688d81.png';
 import sparkLogo from './assets/be0089ef2be8ba12e1e7b021047e4ab156b62992.png';
 import { SignUpForm } from './components/SignUpForm';
@@ -53,13 +53,13 @@ export default function App() {
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
-        <div className="bg-[#8B4B6B] px-6 py-4">
+        <div className="brand-header px-6 py-4">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center shadow-md">
               <span className="text-white text-lg">🌵</span>
             </div>
             <div>
-              <h1 className="text-white font-semibold text-lg">Sun Devil Match</h1>
+              <h1 className="text-white font-semibold text-lg tracking-wide">Sun Devil Match</h1>
               <p className="text-white/80 text-sm">ASU Dating & Date Planning</p>
             </div>
           </div>
@@ -70,16 +70,16 @@ export default function App() {
           <div className="max-w-2xl mx-auto">
             {/* Welcome Section */}
             <div className="text-center mb-12">
-              <h1 className="text-white text-3xl mb-4">
-                Welcome to Sun Devil Match
+              <h1 className="text-white text-3xl mb-4 leading-none">
+                Find your spark at ASU
               </h1>
               <p className="text-gray-400 text-lg max-w-md mx-auto">
-                Connect with fellow Sun Devils and discover your perfect match on campus
+                Meet fellow Sun Devils, plan great dates, and make meaningful connections.
               </p>
             </div>
 
             {/* Sign Up/Sign In Form */}
-            <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+            <div className="glass-card rounded-2xl p-8">
               {isSignUp ? <SignUpForm /> : <SignInForm onToggleMode={() => setIsSignUp(true)} />}
             </div>
 
