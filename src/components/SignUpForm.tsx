@@ -52,6 +52,11 @@ export function SignUpForm() {
         throw new Error('Passwords do not match');
       }
 
+      // Validate password strength
+      if (formData.password.length < 6) {
+        throw new Error('Password must be at least 6 characters long');
+      }
+
       // Validate required fields
       if (!formData.firstName || !formData.lastName || !formData.email || 
           !formData.password || !formData.age || !formData.major || !formData.year) {
@@ -63,14 +68,20 @@ export function SignUpForm() {
         throw new Error('Please use your ASU email address');
       }
 
+      // Validate age
+      const ageNum = parseInt(formData.age);
+      if (ageNum < 18 || ageNum > 100) {
+        throw new Error('Please enter a valid age (18-100)');
+      }
+
       // Create user account
       await signUp(formData.email, formData.password, {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
         age: formData.age,
-        major: formData.major,
+        major: formData.major.trim(),
         year: formData.year,
-        bio: formData.bio
+        bio: formData.bio.trim()
       });
 
       setSuccess(true);

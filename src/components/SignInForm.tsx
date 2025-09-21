@@ -28,9 +28,18 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
     setIsLoading(true);
 
     try {
+      // Validate required fields
+      if (!formData.email || !formData.password) {
+        throw new Error('Please fill in all fields');
+      }
+
+      // Validate ASU email
+      if (!formData.email.endsWith('@asu.edu')) {
+        throw new Error('Please use your ASU email address');
+      }
+
       await signIn(formData.email, formData.password);
-      // Redirect or update UI on successful sign in
-      console.log('Signed in successfully');
+      // The AuthContext will handle the redirect automatically
     } catch (error: any) {
       setError(error.message || 'An error occurred during sign in');
     } finally {
