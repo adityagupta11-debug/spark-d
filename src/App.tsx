@@ -7,9 +7,11 @@ import { SettingsScreen } from './components/SettingsScreen';
 import { ThemeProvider } from './components/ThemeProvider';
 import { Profile } from './components/ProfileCard';
 import { Button } from './components/ui/button';
-import { Heart, Users, User, Calendar, Settings } from 'lucide-react';
+import { CollegeDatingFrame } from './components/figma/CollegeDatingFrame';
+import { FigmaImporter } from './components/figma/FigmaImporter';
+import { Heart, Users, User, Calendar, Settings, Palette } from 'lucide-react';
 
-type Screen = 'swipe' | 'matches' | 'profile' | 'date-planning' | 'settings';
+type Screen = 'swipe' | 'matches' | 'profile' | 'date-planning' | 'settings' | 'figma-import';
 
 function AppContent() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('swipe');
@@ -46,6 +48,19 @@ function AppContent() {
         return <ProfileScreen />;
       case 'settings':
         return <SettingsScreen />;
+      case 'figma-import':
+        return (
+          <div className="p-4">
+            <FigmaImporter 
+              figmaUrl="https://www.figma.com/make/h1IighE64Yi29UxpScokW3/College-Dating-App?node-id=0-1&t=HbXwjmEfJAQmq7t7-1"
+              frameName="College Dating App Frame"
+            />
+            <div className="mt-8">
+              <h2 className="text-xl font-semibold mb-4">Preview: Placeholder Component</h2>
+              <CollegeDatingFrame />
+            </div>
+          </div>
+        );
       case 'date-planning':
         return (
           <DatePlanningScreen 
@@ -72,22 +87,33 @@ function AppContent() {
               <p className="text-xs text-yellow-100">ASU Dating & Date Planning</p>
             </div>
           </div>
-          {matches.length > 0 && currentScreen === 'swipe' && (
-            <div className="bg-white/20 px-2 py-1 rounded-full text-xs">
-              {matches.length} match{matches.length !== 1 ? 'es' : ''}
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            {matches.length > 0 && currentScreen === 'swipe' && (
+              <div className="bg-white/20 px-2 py-1 rounded-full text-xs">
+                {matches.length} match{matches.length !== 1 ? 'es' : ''}
+              </div>
+            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setCurrentScreen('figma-import')}
+              className="text-white hover:bg-white/20 p-2"
+              title="Figma Import Tool"
+            >
+              <Palette className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-md mx-auto bg-background min-h-[calc(100vh-140px)] shadow-xl">
+      <div className={`mx-auto bg-background min-h-[calc(100vh-140px)] shadow-xl ${currentScreen === 'figma-import' ? 'max-w-6xl' : 'max-w-md'}`}>
         {currentScreen !== 'date-planning' && renderScreen()}
         {currentScreen === 'date-planning' && renderScreen()}
       </div>
 
       {/* Bottom Navigation */}
-      {currentScreen !== 'date-planning' && (
+      {currentScreen !== 'date-planning' && currentScreen !== 'figma-import' && (
         <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border">
           <div className="max-w-md mx-auto flex">
             <Button
