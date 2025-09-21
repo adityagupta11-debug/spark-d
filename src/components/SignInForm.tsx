@@ -33,9 +33,9 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
         throw new Error('Please fill in all fields');
       }
 
-      // Validate ASU email
-      if (!formData.email.endsWith('@asu.edu')) {
-        throw new Error('Please use your ASU email address');
+      // Validate email format
+      if (!formData.email.includes('@')) {
+        throw new Error('Please enter a valid email address');
       }
 
       await signIn(formData.email, formData.password);
@@ -65,7 +65,7 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
         )}
 
         <div>
-          <Label htmlFor="email" className="text-white">ASU Email</Label>
+          <Label htmlFor="email" className="text-white">Email</Label>
           <Input
             id="email"
             type="email"

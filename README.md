@@ -1,7 +1,7 @@
 
-  # College Dating App
+# Spark'd - Dating App
 
-  This is a code bundle for College Dating App. The original project is available at https://www.figma.com/design/h1IighE64Yi29UxpScokW3/College-Dating-App.
+This is a code bundle for Spark'd Dating App. The original project is available at https://www.figma.com/design/h1IighE64Yi29UxpScokW3/College-Dating-App.
 
   ## Running the code
 

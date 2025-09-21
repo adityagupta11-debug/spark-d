@@ -138,7 +138,7 @@ export function SettingsScreen() {
         <div className="sticky top-0 bg-background border-b border-border z-10">
           <div className="p-4">
             <h1 className="text-2xl font-semibold">Settings</h1>
-            <p className="text-muted-foreground">Manage your Sun Devil Match experience</p>
+            <p className="text-muted-foreground">Manage your Spark'd experience</p>
           </div>
         </div>
 
@@ -276,7 +276,7 @@ export function SettingsScreen() {
             <CardContent className="space-y-0">
               <SettingRow 
                 icon={Eye} 
-                title="Show me on Sun Devil Match" 
+                title="Show me on Spark'd" 
                 description="Turn off to hide your profile"
                 children={
                   <Switch 
@@ -583,8 +583,8 @@ export function SettingsScreen() {
 
           {/* App Info */}
           <div className="text-center text-sm text-muted-foreground space-y-1 py-4">
-            <div>Sun Devil Match v1.0.0</div>
-            <div>Made with ❤️ for ASU</div>
+            <div>Spark'd v1.0.0</div>
+            <div>Made with ❤️ for connecting people</div>
           </div>
         </div>
       </div>
