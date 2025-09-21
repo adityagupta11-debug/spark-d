@@ -69,19 +69,29 @@ const mockProfiles: Profile[] = [
 export function SwipeScreen({ onMatch }: SwipeScreenProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showMatch, setShowMatch] = useState<Profile | null>(null);
+  const [isSuperMatch, setIsSuperMatch] = useState(false);
 
   const currentProfile = mockProfiles[currentIndex];
 
-  const handleSwipe = (direction: 'left' | 'right') => {
+  const handleSwipe = (direction: 'left' | 'right' | 'super') => {
     if (direction === 'right' && Math.random() > 0.7) {
-      // 30% chance of match
+      // 30% chance of match on regular like
       setShowMatch(currentProfile);
+      setIsSuperMatch(false);
       onMatch(currentProfile);
+    } else if (direction === 'super') {
+      // 80% chance of match on super like
+      if (Math.random() > 0.2) {
+        setShowMatch(currentProfile);
+        setIsSuperMatch(true);
+        onMatch(currentProfile);
+      }
     }
 
     setTimeout(() => {
       setCurrentIndex(prev => (prev + 1) % mockProfiles.length);
       setShowMatch(null);
+      setIsSuperMatch(false);
     }, showMatch ? 2000 : 0);
   };
 
@@ -90,7 +100,9 @@ export function SwipeScreen({ onMatch }: SwipeScreenProps) {
       <div className="flex flex-col items-center justify-center h-full p-6">
         <Sparkles className="w-16 h-16 text-primary mb-4" />
         <h2 className="text-xl mb-2">No more profiles!</h2>
-        <p className="text-muted-foreground text-center">Check back later for more matches!</p>
+        <p className="text-muted-foreground text-center">
+          Check back later for new Sun Devils to meet!
+        </p>
       </div>
     );
   }
@@ -106,11 +118,22 @@ export function SwipeScreen({ onMatch }: SwipeScreenProps) {
             exit={{ opacity: 0, scale: 0.8 }}
             className="flex flex-col items-center justify-center h-full"
           >
-            <div className="text-white rounded-2xl p-8 text-center max-w-sm" style={{background: 'linear-gradient(to right, #8C1D40, #7A1936)'}}>
-              <div className="text-6xl mb-4">🍽️</div>
-              <h2 className="text-2xl mb-2">It's a Match! 🎉</h2>
-              <p>You and {showMatch.name} both forked up!</p>
-              <p className="text-sm mt-2 opacity-90">Time to plan the perfect date!</p>
+            <div className="text-white rounded-2xl p-8 text-center max-w-sm" style={{background: isSuperMatch ? 'linear-gradient(135deg, #FFC627, #FFD700)' : 'linear-gradient(to right, #8C1D40, #7A1936)'}}>
+              {isSuperMatch ? (
+                <>
+                  <div className="text-6xl mb-4">⭐</div>
+                  <h2 className="text-2xl mb-2 text-maroon" style={{color: '#8C1D40'}}>Super Match! 🔥</h2>
+                  <p className="text-maroon" style={{color: '#8C1D40'}}>Sparky helped you connect with {showMatch.name}!</p>
+                  <p className="text-sm mt-2 opacity-90 text-maroon" style={{color: '#8C1D40'}}>This is going to be legendary!</p>
+                </>
+              ) : (
+                <>
+                  <div className="text-6xl mb-4">🍽️</div>
+                  <h2 className="text-2xl mb-2">It's a Match! 🎉</h2>
+                  <p>You and {showMatch.name} both forked up!</p>
+                  <p className="text-sm mt-2 opacity-90">Time to plan the perfect date!</p>
+                </>
+              )}
             </div>
           </motion.div>
         ) : (

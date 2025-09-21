@@ -1,8 +1,10 @@
 import { motion } from 'motion/react';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
-import { MapPin, GraduationCap, Utensils } from 'lucide-react';
+import { MapPin, GraduationCap } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import tridentLogo from 'figma:asset/970e3860c3f3288c2595ad1e61ff4ee6c52813b4.png';
+import sparkyLogo from 'figma:asset/7da74a68038b3573e504dd82d375265a2d0b9530.png';
 
 export interface Profile {
   id: string;
@@ -18,7 +20,7 @@ export interface Profile {
 
 interface ProfileCardProps {
   profile: Profile;
-  onSwipe: (direction: 'left' | 'right') => void;
+  onSwipe: (direction: 'left' | 'right' | 'super') => void;
 }
 
 export function ProfileCard({ profile, onSwipe }: ProfileCardProps) {
@@ -68,29 +70,56 @@ export function ProfileCard({ profile, onSwipe }: ProfileCardProps) {
             )}
           </div>
           
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-3 justify-center items-end">
             <button
               onClick={() => onSwipe('left')}
-              className="flex items-center justify-center w-14 h-14 rounded-full border-2 border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors"
-              title="Fork Down - Pass"
+              className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-destructive hover:bg-destructive transition-colors"
+              title="Pitchfork Down - Pass"
             >
-              <Utensils className="w-6 h-6 rotate-180" />
+              <img 
+                src={tridentLogo} 
+                alt="Dislike" 
+                className="w-6 h-6 object-contain rotate-180 filter brightness-0 invert-0"
+                style={{ filter: 'brightness(0) saturate(100%) invert(27%) sepia(85%) saturate(1345%) hue-rotate(328deg) brightness(85%) contrast(97%)' }}
+              />
             </button>
+            
+            <button
+              onClick={() => onSwipe('super')}
+              className="flex items-center justify-center w-16 h-16 rounded-full border-3 transition-all transform hover:scale-105 shadow-lg"
+              style={{
+                borderColor: '#FFC627', 
+                backgroundColor: 'linear-gradient(135deg, #FFC627, #FFD700)',
+                background: 'linear-gradient(135deg, #FFC627, #FFD700)',
+                boxShadow: '0 4px 15px rgba(255, 198, 39, 0.3)'
+              }}
+              title="Super Like with Sparky!"
+            >
+              <img 
+                src={sparkyLogo} 
+                alt="Super Like - Sparky" 
+                className="w-10 h-10 object-contain"
+              />
+            </button>
+            
             <button
               onClick={() => onSwipe('right')}
-              className="flex items-center justify-center w-14 h-14 rounded-full border-2 text-white transition-colors"
-              style={{borderColor: '#FFC627', color: '#FFC627', backgroundColor: 'transparent'}}
+              className="flex items-center justify-center w-12 h-12 rounded-full border-2 transition-colors"
+              style={{borderColor: '#FFC627', backgroundColor: 'transparent'}}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#FFC627';
-                e.currentTarget.style.color = '#8C1D40';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#FFC627';
               }}
-              title="Fork Up - Like"
+              title="Pitchfork Up - Like"
             >
-              <Utensils className="w-6 h-6" />
+              <img 
+                src={tridentLogo} 
+                alt="Like" 
+                className="w-6 h-6 object-contain"
+                style={{ filter: 'brightness(0) saturate(100%) invert(84%) sepia(100%) saturate(490%) hue-rotate(4deg) brightness(106%) contrast(101%)' }}
+              />
             </button>
           </div>
         </div>
