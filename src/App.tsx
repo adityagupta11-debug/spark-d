@@ -61,19 +61,19 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-4 shadow-lg" style={{background: 'linear-gradient(to right, #8C1D40, #7A1936)'}}>
+      <div className="bg-gradient-to-r from-spark-600 to-spark-700 text-white p-4 shadow-lg backdrop-blur-sm">
         <div className="max-w-md mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-              🌵
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-sparkAccent-400 to-spark-500 rounded-full flex items-center justify-center shadow-lg animate-pulse-glow">
+              <span className="text-xl">✨</span>
             </div>
             <div>
-              <h1 className="text-lg">Sun Devil Match</h1>
-              <p className="text-xs text-yellow-100">ASU Dating & Date Planning</p>
+              <h1 className="text-xl font-bold tracking-tight">Spark'd</h1>
+              <p className="text-xs text-spark-100 font-medium">Connect • Date • Experience</p>
             </div>
           </div>
           {matches.length > 0 && currentScreen === 'swipe' && (
-            <div className="bg-white/20 px-2 py-1 rounded-full text-xs">
+            <div className="bg-gradient-to-r from-sparkAccent-500 to-sparkAccent-600 px-3 py-1.5 rounded-full text-xs font-semibold shadow-md">
               {matches.length} match{matches.length !== 1 ? 'es' : ''}
             </div>
           )}
@@ -107,7 +107,7 @@ function AppContent() {
               <Users className="w-5 h-5" />
               <span className="text-xs">Matches</span>
               {matches.length > 0 && (
-                <div className="absolute top-2 right-2 w-5 h-5 text-white rounded-full text-xs flex items-center justify-center" style={{backgroundColor: '#FFC627', color: '#8C1D40'}}>
+                <div className="absolute top-2 right-2 w-5 h-5 bg-gradient-to-r from-spark-500 to-spark-600 text-white rounded-full text-xs flex items-center justify-center font-bold shadow-md">
                   {matches.length}
                 </div>
               )}

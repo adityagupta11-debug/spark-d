@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { ProfileCard, Profile } from './ProfileCard';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 
 interface SwipeScreenProps {
   onMatch: (profile: Profile) => void;
 }
 
-// Mock profiles for ASU students
+// Mock profiles for users
 const mockProfiles: Profile[] = [
   {
     id: '1',
@@ -15,9 +15,9 @@ const mockProfiles: Profile[] = [
     age: 20,
     major: 'Business Administration',
     year: 'Junior',
-    bio: 'Love hiking Camelback Mountain and trying new restaurants in Tempe! Always down for a study session at the MU or catching a Sun Devils game. 🌵',
+    bio: 'Love hiking and trying new restaurants! Always down for a study session or catching a game. ✨',
     photos: ['https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400'],
-    interests: ['Hiking', 'Sun Devils Sports', 'Photography', 'Coffee', 'Business'],
+    interests: ['Hiking', 'Sports', 'Photography', 'Coffee', 'Business'],
     distance: 0.5
   },
   {
@@ -59,7 +59,7 @@ const mockProfiles: Profile[] = [
     age: 20,
     major: 'Journalism',
     year: 'Junior',
-    bio: 'Aspiring journalist covering ASU events for The State Press. Love live music at venues like Crescent Ballroom and exploring downtown Phoenix! 📰',
+    bio: 'Aspiring journalist covering local events. Love live music at local venues and exploring downtown! 📰',
     photos: ['https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400'],
     interests: ['Journalism', 'Live Music', 'Writing', 'Events', 'Phoenix'],
     distance: 1.5
@@ -91,7 +91,7 @@ export function SwipeScreen({ onMatch }: SwipeScreenProps) {
         <Sparkles className="w-16 h-16 text-primary mb-4" />
         <h2 className="text-xl mb-2">No more profiles!</h2>
         <p className="text-muted-foreground text-center">
-          Check back later for new Sun Devils to meet!
+          Check back later for new people to meet!
         </p>
       </div>
     );
