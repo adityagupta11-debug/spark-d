@@ -428,6 +428,20 @@
   }
 }
 
+/* Figma-aligned app chrome */
+.brand-header {
+  background: linear-gradient(to right, #8C1D40, #7A1936);
+}
+
+.bottom-nav {
+  background-color: var(--background);
+  border-top: 1px solid var(--border);
+}
+
+.active-tab {
+  color: var(--primary);
+}
+
 @layer utilities {
   .\@container\/card-header {
     container: card-header / inline-size;
