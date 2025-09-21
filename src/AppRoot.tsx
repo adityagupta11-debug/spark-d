@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ThemeProvider } from './components/ThemeProvider';
+import { AuthProvider } from './contexts/AuthContext';
 import Dashboard from './components/Dashboard';
 import { useAuth } from './contexts/AuthContext';
 import { SignInForm } from './components/SignInForm';
@@ -74,7 +75,9 @@ function AuthGate() {
 export default function AppRoot() {
   return (
     <ThemeProvider>
-      <AuthGate />
+      <AuthProvider>
+        <AuthGate />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
