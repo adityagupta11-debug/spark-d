@@ -13,7 +13,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     // Check localStorage first, then system preference, default to dark
-    const savedTheme = localStorage.getItem('sun-devil-match-theme') as Theme;
+    const savedTheme = localStorage.getItem('sparkd-theme') as Theme;
     if (savedTheme) {
       return savedTheme;
     }
@@ -36,7 +36,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     root.classList.add(theme);
     
     // Save to localStorage
-    localStorage.setItem('sun-devil-match-theme', theme);
+    localStorage.setItem('sparkd-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

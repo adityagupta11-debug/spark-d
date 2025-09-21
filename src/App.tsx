@@ -68,8 +68,8 @@ function AppContent() {
               🌵
             </div>
             <div>
-              <h1 className="text-lg">Sun Devil Match</h1>
-              <p className="text-xs text-yellow-100">ASU Dating & Date Planning</p>
+              <h1 className="text-lg">Spark'd</h1>
+              <p className="text-xs text-yellow-100">College Dating & Date Planning</p>
             </div>
           </div>
           {matches.length > 0 && currentScreen === 'swipe' && (

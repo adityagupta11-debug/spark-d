@@ -14,8 +14,8 @@ const mockProfiles = [
     major: 'Business Administration',
     year: 'Junior',
     distance: '0.5 mi',
-    bio: 'Love hiking Camelback Mountain and trying new restaurants in Tempe! Always down for a study session at the MU or catching a Sun Devils game. 🌵',
-    interests: ['Hiking', 'Sun Devils Sports', 'Photography'],
+    bio: 'Love hiking and trying new restaurants! Always down for a study session or catching a game. 🌵',
+    interests: ['Hiking', 'College Sports', 'Photography'],
     photos: ['/api/placeholder/400/600'] // Placeholder for now
   },
   {
@@ -63,7 +63,7 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
         <div className="text-center">
           <div className="text-6xl mb-4">🌵</div>
           <h2 className="text-2xl font-semibold mb-2">No more profiles</h2>
-          <p className="text-gray-400">Check back later for more Sun Devils!</p>
+          <p className="text-gray-400">Check back later for more students!</p>
         </div>
       </div>
     );

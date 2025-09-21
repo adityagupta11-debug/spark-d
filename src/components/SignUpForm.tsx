@@ -106,7 +106,7 @@ export function SignUpForm() {
             Please check your inbox and click the verification link to activate your account.
           </p>
           <p className="text-green-200/60 text-sm">
-            Once verified, you'll be able to sign in and start connecting with fellow Sun Devils!
+            Once verified, you'll be able to sign in and start connecting with fellow students!
           </p>
         </div>
       </div>
@@ -222,7 +222,7 @@ export function SignUpForm() {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <h2 className="text-white mb-2">Academic Info</h2>
-              <p className="text-gray-400">Help us connect you with fellow Sun Devils</p>
+              <p className="text-gray-400">Help us connect you with fellow students</p>
             </div>
 
             <div>
@@ -285,7 +285,7 @@ export function SignUpForm() {
                 value={formData.bio}
                 onChange={(e) => handleInputChange('bio', e.target.value)}
                 className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 min-h-[120px]"
-                placeholder="Tell other Sun Devils about yourself! What do you love about ASU? What are you looking for?"
+                placeholder="Tell other students about yourself! What do you love about college? What are you looking for?"
                 maxLength={300}
               />
               <p className="text-xs text-gray-500 mt-1">{formData.bio.length}/300 characters</p>
