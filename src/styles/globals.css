@@ -187,3 +187,8 @@
 html {
   font-size: var(--font-size);
 }
+
+/* Dashboard utilities */
+.sundevil-gradient {
+  background: linear-gradient(180deg, #8B4B6B 0%, #7a3e5d 100%);
+}
