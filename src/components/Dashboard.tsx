@@ -32,16 +32,21 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
-      {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4 flex-shrink-0">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-            <span className="text-white text-lg">🌵</span>
+    <div className="min-h-screen bg-gradient-to-br from-[#8B4B6B] via-[#2D1B69] to-black flex flex-col">
+      {/* Enhanced Header */}
+      <div className="backdrop-blur-lg bg-white/10 border-b border-white/20 px-6 py-4 flex-shrink-0">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#ffc627] to-[#ffb000] rounded-2xl flex items-center justify-center shadow-lg">
+              <span className="text-2xl">🌵</span>
+            </div>
+            <div>
+              <h1 className="text-white font-bold text-xl tracking-tight">Sun Devil Match</h1>
+              <p className="text-white/80 text-sm font-medium">Welcome back, {userProfile?.firstName || 'Sun Devil'}!</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-white font-semibold text-lg">Sun Devil Match</h1>
-            <p className="text-white/80 text-sm">ASU Dating & Date Planning</p>
+          <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 flex items-center justify-center">
+            <User size={20} className="text-white" />
           </div>
         </div>
       </div>
@@ -51,55 +56,55 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
         {renderContent()}
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="bg-black border-t border-gray-800 flex-shrink-0">
-        <div className="flex">
+      {/* Enhanced Bottom Navigation */}
+      <div className="backdrop-blur-xl bg-black/40 border-t border-white/10 flex-shrink-0 px-2 py-2">
+        <div className="flex bg-white/5 rounded-2xl p-1">
           <button
             onClick={() => setActiveTab('discover')}
-            className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
+            className={`flex-1 py-3 px-4 flex flex-col items-center space-y-1 rounded-xl transition-all duration-300 ${
               activeTab === 'discover' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'bg-gradient-to-br from-[#ffc627] to-[#ffb000] text-black shadow-lg transform scale-105' 
+                : 'text-white/70 hover:text-white hover:bg-white/10'
             }`}
           >
-            <Heart size={24} />
-            <span className="text-xs font-medium">Discover</span>
+            <Heart size={22} />
+            <span className="text-xs font-bold">Discover</span>
           </button>
           
           <button
             onClick={() => setActiveTab('matches')}
-            className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
+            className={`flex-1 py-3 px-4 flex flex-col items-center space-y-1 rounded-xl transition-all duration-300 ${
               activeTab === 'matches' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'bg-gradient-to-br from-[#ffc627] to-[#ffb000] text-black shadow-lg transform scale-105' 
+                : 'text-white/70 hover:text-white hover:bg-white/10'
             }`}
           >
-            <Users size={24} />
-            <span className="text-xs font-medium">Matches</span>
+            <Users size={22} />
+            <span className="text-xs font-bold">Matches</span>
           </button>
           
           <button
             onClick={() => setActiveTab('profile')}
-            className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
+            className={`flex-1 py-3 px-4 flex flex-col items-center space-y-1 rounded-xl transition-all duration-300 ${
               activeTab === 'profile' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'bg-gradient-to-br from-[#ffc627] to-[#ffb000] text-black shadow-lg transform scale-105' 
+                : 'text-white/70 hover:text-white hover:bg-white/10'
             }`}
           >
-            <User size={24} />
-            <span className="text-xs font-medium">Profile</span>
+            <User size={22} />
+            <span className="text-xs font-bold">Profile</span>
           </button>
           
           <button
             onClick={() => setActiveTab('settings')}
-            className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
+            className={`flex-1 py-3 px-4 flex flex-col items-center space-y-1 rounded-xl transition-all duration-300 ${
               activeTab === 'settings' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'bg-gradient-to-br from-[#ffc627] to-[#ffb000] text-black shadow-lg transform scale-105' 
+                : 'text-white/70 hover:text-white hover:bg-white/10'
             }`}
           >
-            <Settings size={24} />
-            <span className="text-xs font-medium">Settings</span>
+            <Settings size={22} />
+            <span className="text-xs font-bold">Settings</span>
           </button>
         </div>
       </div>
