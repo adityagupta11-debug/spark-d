@@ -48,43 +48,43 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="text-center mb-6">
-        <h2 className="text-white text-2xl mb-2">Welcome Back!</h2>
-        <p className="text-gray-400">Sign in to your Spark'd account</p>
+    <div className="w-full">
+      <div className="text-center mb-8">
+        <h2 className="text-white text-3xl font-bold mb-2">Welcome Back! 👋</h2>
+        <p className="text-white/70 text-lg">Sign in to your Sun Devil Match account</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Error message */}
         {error && (
-          <Alert className="bg-red-900/20 border-red-700/30">
-            <AlertDescription className="text-red-200">
+          <Alert className="bg-gradient-to-r from-red-500/20 to-pink-500/20 backdrop-blur-sm border border-red-400/30 rounded-xl">
+            <AlertDescription className="text-red-200 font-medium">
               {error}
             </AlertDescription>
           </Alert>
         )}
 
-        <div>
-          <Label htmlFor="email" className="text-white">ASU Email</Label>
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-white font-semibold">ASU Email</Label>
           <Input
             id="email"
             type="email"
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+            className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 rounded-xl h-12 focus:border-[#ffc627] focus:ring-2 focus:ring-[#ffc627]/20 transition-all"
             placeholder="yourname@asu.edu"
             required
           />
         </div>
 
-        <div>
-          <Label htmlFor="password" className="text-white">Password</Label>
+        <div className="space-y-2">
+          <Label htmlFor="password" className="text-white font-semibold">Password</Label>
           <Input
             id="password"
             type="password"
             value={formData.password}
             onChange={(e) => handleInputChange('password', e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+            className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/50 rounded-xl h-12 focus:border-[#ffc627] focus:ring-2 focus:ring-[#ffc627]/20 transition-all"
             placeholder="Enter your password"
             required
           />
@@ -92,18 +92,25 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
 
         <Button
           type="submit"
-          className="w-full bg-yellow-600 hover:bg-yellow-700 text-black"
+          className="w-full bg-gradient-to-r from-[#ffc627] to-[#ffb000] hover:from-[#ffb000] hover:to-[#ffc627] text-black font-bold rounded-xl h-12 shadow-lg transition-all hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
           disabled={isLoading}
         >
-          {isLoading ? 'Signing In...' : 'Sign In'}
+          {isLoading ? (
+            <div className="flex items-center justify-center">
+              <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin mr-2"></div>
+              Signing In...
+            </div>
+          ) : (
+            'Sign In ✨'
+          )}
         </Button>
 
-        <div className="text-center">
-          <p className="text-gray-500 text-sm">
+        <div className="text-center pt-4">
+          <p className="text-white/60 text-sm">
             Don't have an account?{' '}
             <Button 
               variant="link" 
-              className="text-yellow-500 hover:text-yellow-400 p-0 h-auto"
+              className="text-[#ffc627] hover:text-[#ffb000] p-0 h-auto font-semibold transition-colors"
               onClick={onToggleMode}
             >
               Sign Up
