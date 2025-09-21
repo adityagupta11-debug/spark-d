@@ -40,8 +40,8 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
             <span className="text-white text-lg">🌵</span>
           </div>
           <div>
-            <h1 className="text-white font-semibold text-lg tracking-wide">Sun Devil Match</h1>
-            <p className="text-white/80 text-sm">ASU Dating & Date Planning</p>
+            <h1 className="text-white font-semibold text-lg tracking-wide">Spark'd</h1>
+            <p className="text-white/80 text-sm">College dating & date planning</p>
           </div>
         </div>
       </div>

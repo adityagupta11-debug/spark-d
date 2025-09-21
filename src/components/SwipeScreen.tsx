@@ -90,9 +90,7 @@ export function SwipeScreen({ onMatch }: SwipeScreenProps) {
       <div className="flex flex-col items-center justify-center h-full p-6">
         <Sparkles className="w-16 h-16 text-primary mb-4" />
         <h2 className="text-xl mb-2">No more profiles!</h2>
-        <p className="text-muted-foreground text-center">
-          Check back later for new Sun Devils to meet!
-        </p>
+        <p className="text-muted-foreground text-center">Check back later for more matches!</p>
       </div>
     );
   }
