@@ -11,56 +11,56 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
   const interests = userProfile?.interests || ['Sun Devils Sports', 'Study Groups', 'Campus Life'];
 
   return (
-    <div className="flex-1 bg-black overflow-y-auto">
+    <div className="flex-1 overflow-y-auto relative z-10">
       {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4 flex items-center justify-between">
-        <h1 className="text-white text-xl font-semibold">Your Profile</h1>
-        <button className="bg-black/20 hover:bg-black/30 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
-          <Edit3 size={16} />
-          <span>Edit</span>
+      <div className="bg-gradient-to-r from-purple-600/90 to-pink-600/90 backdrop-blur-md px-6 py-6 flex items-center justify-between shadow-2xl">
+        <h1 className="text-white text-2xl font-bold">Your Profile</h1>
+        <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-2xl flex items-center space-x-2 transition-all duration-200 shadow-lg hover:shadow-xl">
+          <Edit3 size={18} />
+          <span className="font-semibold">Edit</span>
         </button>
       </div>
 
-      <div className="px-4 py-6">
+      <div className="px-6 py-8">
         {/* Profile Photo */}
-        <div className="relative mb-6">
-          <div className="w-full h-64 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-2xl overflow-hidden">
+        <div className="relative mb-8">
+          <div className="w-full h-80 bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 rounded-3xl overflow-hidden shadow-2xl">
             {/* Hot Air Balloon Scene - matching the Figma design */}
             <div className="w-full h-full bg-gradient-to-b from-blue-300 to-yellow-200 relative">
               {/* Mountains in background */}
-              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-yellow-600 to-yellow-400"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-yellow-600 to-yellow-400"></div>
               
               {/* Hot air balloon */}
-              <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
-                <div className="w-16 h-20 relative">
+              <div className="absolute top-20 left-1/2 transform -translate-x-1/2">
+                <div className="w-20 h-24 relative">
                   {/* Balloon */}
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 via-yellow-500 to-green-500 border-2 border-white shadow-lg">
-                    <div className="w-full h-full rounded-full bg-gradient-to-br from-red-400 via-yellow-400 to-green-400 opacity-80"></div>
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-500 via-yellow-500 to-green-500 border-4 border-white shadow-2xl">
+                    <div className="w-full h-full rounded-full bg-gradient-to-br from-red-400 via-yellow-400 to-green-400 opacity-90"></div>
                   </div>
                   {/* Basket */}
-                  <div className="absolute top-14 left-1/2 transform -translate-x-1/2 w-4 h-3 bg-yellow-800 rounded-sm"></div>
+                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-6 h-4 bg-yellow-800 rounded-sm shadow-lg"></div>
                   {/* Ropes */}
-                  <div className="absolute top-12 left-1/4 w-px h-3 bg-gray-600"></div>
-                  <div className="absolute top-12 right-1/4 w-px h-3 bg-gray-600"></div>
+                  <div className="absolute top-14 left-1/3 w-px h-4 bg-gray-600"></div>
+                  <div className="absolute top-14 right-1/3 w-px h-4 bg-gray-600"></div>
                 </div>
               </div>
               
               {/* House */}
-              <div className="absolute bottom-8 right-8">
-                <div className="w-12 h-8 bg-yellow-600 rounded-t-lg"></div>
-                <div className="w-12 h-6 bg-orange-600"></div>
+              <div className="absolute bottom-12 right-12">
+                <div className="w-16 h-10 bg-yellow-600 rounded-t-lg shadow-lg"></div>
+                <div className="w-16 h-8 bg-orange-600 shadow-lg"></div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Profile Info Grid */}
-        <div className="bg-gray-900 rounded-2xl p-6 mb-6">
-          <div className="grid grid-cols-2 gap-6">
+        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 mb-8 border border-white/20 shadow-2xl">
+          <div className="grid grid-cols-2 gap-8">
             {/* Name */}
             <div>
-              <h3 className="text-gray-400 text-sm font-medium mb-1">Name</h3>
-              <p className="text-white text-lg">
+              <h3 className="text-gray-300 text-sm font-semibold mb-3 uppercase tracking-wide">Name</h3>
+              <p className="text-white text-xl font-bold">
                 {userProfile?.firstName && userProfile?.lastName 
                   ? `${userProfile.firstName} ${userProfile.lastName}`
                   : user?.displayName || 'Your Name'
@@ -70,40 +70,40 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
 
             {/* Age */}
             <div>
-              <h3 className="text-gray-400 text-sm font-medium mb-1">Age</h3>
-              <p className="text-white text-lg">{userProfile?.age || '20'}</p>
+              <h3 className="text-gray-300 text-sm font-semibold mb-3 uppercase tracking-wide">Age</h3>
+              <p className="text-white text-xl font-bold">{userProfile?.age || '20'}</p>
             </div>
 
             {/* Major */}
             <div>
-              <h3 className="text-gray-400 text-sm font-medium mb-1">Major</h3>
-              <p className="text-white text-lg">{userProfile?.major || 'Your Major'}</p>
+              <h3 className="text-gray-300 text-sm font-semibold mb-3 uppercase tracking-wide">Major</h3>
+              <p className="text-white text-xl font-bold">{userProfile?.major || 'Your Major'}</p>
             </div>
 
             {/* Year */}
             <div>
-              <h3 className="text-gray-400 text-sm font-medium mb-1">Year</h3>
-              <p className="text-white text-lg capitalize">{userProfile?.year || 'Sophomore'}</p>
+              <h3 className="text-gray-300 text-sm font-semibold mb-3 uppercase tracking-wide">Year</h3>
+              <p className="text-white text-xl font-bold capitalize">{userProfile?.year || 'Sophomore'}</p>
             </div>
           </div>
         </div>
 
         {/* Bio */}
-        <div className="bg-gray-900 rounded-2xl p-6 mb-6">
-          <h3 className="text-gray-400 text-sm font-medium mb-3">Bio</h3>
-          <p className="text-gray-300 leading-relaxed">
+        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 mb-8 border border-white/20 shadow-2xl">
+          <h3 className="text-gray-300 text-sm font-semibold mb-4 uppercase tracking-wide">Bio</h3>
+          <p className="text-gray-200 leading-relaxed text-lg">
             {userProfile?.bio || "Tell other Sun Devils about yourself! What do you love about ASU? What are you looking for?"}
           </p>
         </div>
 
         {/* Interests */}
-        <div className="bg-gray-900 rounded-2xl p-6">
-          <h3 className="text-gray-400 text-sm font-medium mb-4">Interests</h3>
-          <div className="flex flex-wrap gap-2">
+        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
+          <h3 className="text-gray-300 text-sm font-semibold mb-6 uppercase tracking-wide">Interests</h3>
+          <div className="flex flex-wrap gap-3">
             {interests.map((interest, index) => (
               <span
                 key={index}
-                className="bg-[#8B4B6B] text-white px-4 py-2 rounded-full text-sm font-medium"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg"
               >
                 {interest}
               </span>

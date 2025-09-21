@@ -49,42 +49,44 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="text-center mb-6">
-        <h2 className="text-white text-2xl mb-2">Welcome Back!</h2>
-        <p className="text-gray-400">Sign in to your Spark'd account</p>
+      <div className="text-center mb-8">
+        <h2 className="text-white text-3xl font-bold mb-2 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+          Welcome Back!
+        </h2>
+        <p className="text-gray-300 text-lg">Sign in to your Sun Devil Match account</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Error message */}
         {error && (
-          <Alert className="bg-red-900/20 border-red-700/30">
-            <AlertDescription className="text-red-200">
+          <Alert className="bg-red-500/20 border-red-400/30 backdrop-blur-sm">
+            <AlertDescription className="text-red-100 font-medium">
               {error}
             </AlertDescription>
           </Alert>
         )}
 
         <div>
-          <Label htmlFor="email" className="text-white">ASU Email</Label>
+          <Label htmlFor="email" className="text-white font-semibold text-sm mb-2 block">ASU Email</Label>
           <Input
             id="email"
             type="email"
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+            className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 backdrop-blur-sm transition-all duration-200"
             placeholder="yourname@asu.edu"
             required
           />
         </div>
 
         <div>
-          <Label htmlFor="password" className="text-white">Password</Label>
+          <Label htmlFor="password" className="text-white font-semibold text-sm mb-2 block">Password</Label>
           <Input
             id="password"
             type="password"
             value={formData.password}
             onChange={(e) => handleInputChange('password', e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+            className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 backdrop-blur-sm transition-all duration-200"
             placeholder="Enter your password"
             required
           />
@@ -92,18 +94,18 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
 
         <Button
           type="submit"
-          className="w-full bg-yellow-600 hover:bg-yellow-700 text-black"
+          className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black font-semibold py-3 shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={isLoading}
         >
           {isLoading ? 'Signing In...' : 'Sign In'}
         </Button>
 
         <div className="text-center">
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-400 text-sm">
             Don't have an account?{' '}
             <Button 
               variant="link" 
-              className="text-yellow-500 hover:text-yellow-400 p-0 h-auto"
+              className="text-yellow-400 hover:text-yellow-300 p-0 h-auto font-semibold"
               onClick={onToggleMode}
             >
               Sign Up
