@@ -21,10 +21,10 @@ export default function SettingsPage({ user, userProfile, onSignOut }: SettingsP
   return (
     <div className="flex-1 bg-black overflow-y-auto">
       {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4">
+      <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-4">
         <div>
           <h1 className="text-white text-xl font-semibold">Settings</h1>
-          <p className="text-white/80 text-sm">Manage your Sun Devil Match experience</p>
+          <p className="text-white/80 text-sm">Manage your Spark'd experience</p>
         </div>
       </div>
 
@@ -167,7 +167,7 @@ export default function SettingsPage({ user, userProfile, onSignOut }: SettingsP
 
         {/* App Version */}
         <div className="text-center mt-6">
-          <p className="text-gray-500 text-sm">Sun Devil Match v1.0.0</p>
+          <p className="text-gray-500 text-sm">Spark'd v1.0.0</p>
         </div>
       </div>
     </div>

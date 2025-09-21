@@ -32,9 +32,9 @@ export const signUp = async (
   userData: Omit<UserProfile, 'uid' | 'email' | 'createdAt' | 'updatedAt' | 'isVerified'>
 ): Promise<UserCredential> => {
   try {
-    // Validate ASU email
-    if (!email.endsWith('@asu.edu')) {
-      throw new Error('Please use your ASU email address');
+    // Validate college email (optional - you can remove this for general use)
+    if (!email.includes('@')) {
+      throw new Error('Please enter a valid email address');
     }
 
     // Create user account

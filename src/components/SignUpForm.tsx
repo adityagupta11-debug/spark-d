@@ -63,9 +63,9 @@ export function SignUpForm() {
         throw new Error('Please fill in all required fields');
       }
 
-      // Validate ASU email
-      if (!formData.email.endsWith('@asu.edu')) {
-        throw new Error('Please use your ASU email address');
+      // Validate email format
+      if (!formData.email.includes('@')) {
+        throw new Error('Please enter a valid email address');
       }
 
       // Validate age
@@ -106,7 +106,7 @@ export function SignUpForm() {
             Please check your inbox and click the verification link to activate your account.
           </p>
           <p className="text-green-200/60 text-sm">
-            Once verified, you'll be able to sign in and start connecting with fellow Sun Devils!
+            Once verified, you'll be able to sign in and start making connections!
           </p>
         </div>
       </div>
@@ -176,18 +176,17 @@ export function SignUpForm() {
             </div>
 
             <div>
-              <Label htmlFor="email" className="text-white">ASU Email</Label>
+              <Label htmlFor="email" className="text-white">Email Address</Label>
               <Input
                 id="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
                 className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
-                placeholder="yourname@asu.edu"
-                pattern=".*@asu\.edu$"
+                placeholder="yourname@example.com"
                 required
               />
-              <p className="text-xs text-gray-500 mt-1">Must use your ASU email address</p>
+              <p className="text-xs text-gray-500 mt-1">We'll send a verification email to this address</p>
             </div>
 
             <div>
@@ -222,7 +221,7 @@ export function SignUpForm() {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <h2 className="text-white mb-2">Academic Info</h2>
-              <p className="text-gray-400">Help us connect you with fellow Sun Devils</p>
+              <p className="text-gray-400">Help us connect you with like-minded people</p>
             </div>
 
             <div>
@@ -285,7 +284,7 @@ export function SignUpForm() {
                 value={formData.bio}
                 onChange={(e) => handleInputChange('bio', e.target.value)}
                 className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 min-h-[120px]"
-                placeholder="Tell other Sun Devils about yourself! What do you love about ASU? What are you looking for?"
+                placeholder="Tell others about yourself! What do you love doing? What are you looking for?"
                 maxLength={300}
               />
               <p className="text-xs text-gray-500 mt-1">{formData.bio.length}/300 characters</p>
@@ -295,7 +294,7 @@ export function SignUpForm() {
               <h4 className="text-white mb-2">Almost done! 🎉</h4>
               <p className="text-gray-400 text-sm">
                 By creating an account, you agree to our Terms of Service and Privacy Policy. 
-                We'll verify your ASU student status before activating your account.
+                We'll verify your account before activation.
               </p>
             </div>
           </div>

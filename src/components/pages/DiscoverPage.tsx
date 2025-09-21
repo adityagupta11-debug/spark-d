@@ -3,6 +3,7 @@ import { MapPin, GraduationCap, X, Heart } from 'lucide-react';
 
 interface DiscoverPageProps {
   userProfile: any;
+  onMatch?: (profile: any) => void;
 }
 
 // Mock profile data - in a real app this would come from your backend
@@ -14,8 +15,8 @@ const mockProfiles = [
     major: 'Business Administration',
     year: 'Junior',
     distance: '0.5 mi',
-    bio: 'Love hiking Camelback Mountain and trying new restaurants in Tempe! Always down for a study session at the MU or catching a Sun Devils game. 🌵',
-    interests: ['Hiking', 'Sun Devils Sports', 'Photography'],
+    bio: 'Love hiking and trying new restaurants! Always down for a study session or catching a game with friends. 🌟',
+    interests: ['Hiking', 'Sports', 'Photography'],
     photos: ['/api/placeholder/400/600'] // Placeholder for now
   },
   {
@@ -36,19 +37,34 @@ const mockProfiles = [
     major: 'Psychology',
     year: 'Sophomore',
     distance: '1.2 mi',
-    bio: 'Psychology major who loves art, music, and deep conversations. Always up for coffee at the MU!',
+    bio: 'Psychology major who loves art, music, and deep conversations. Always up for coffee and great chats!',
     interests: ['Art', 'Music', 'Coffee'],
     photos: ['/api/placeholder/400/600']
   }
 ];
 
-export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
+export default function DiscoverPage({ userProfile, onMatch }: DiscoverPageProps) {
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
   const [profiles, setProfiles] = useState(mockProfiles);
 
   const currentProfile = profiles[currentProfileIndex];
 
   const handleSwipe = (direction: 'left' | 'right') => {
+    if (direction === 'right' && Math.random() > 0.7 && onMatch) {
+      // 30% chance of match
+      onMatch({
+        id: currentProfile.id.toString(),
+        name: currentProfile.name,
+        age: currentProfile.age,
+        major: currentProfile.major,
+        year: currentProfile.year,
+        bio: currentProfile.bio,
+        photos: currentProfile.photos,
+        interests: currentProfile.interests,
+        distance: parseFloat(currentProfile.distance)
+      });
+    }
+    
     if (currentProfileIndex < profiles.length - 1) {
       setCurrentProfileIndex(currentProfileIndex + 1);
     } else {
@@ -61,9 +77,9 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
     return (
       <div className="flex-1 flex items-center justify-center bg-black text-white">
         <div className="text-center">
-          <div className="text-6xl mb-4">🌵</div>
+          <div className="text-6xl mb-4">✨</div>
           <h2 className="text-2xl font-semibold mb-2">No more profiles</h2>
-          <p className="text-gray-400">Check back later for more Sun Devils!</p>
+          <p className="text-gray-400">Check back later for more connections!</p>
         </div>
       </div>
     );
@@ -112,7 +128,7 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
               {currentProfile.interests.map((interest, index) => (
                 <span
                   key={index}
-                  className="bg-[#8B4B6B] text-white px-3 py-1 rounded-full text-sm"
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm"
                 >
                   {interest}
                 </span>
@@ -151,7 +167,7 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
             <div
               key={index}
               className={`w-2 h-2 rounded-full ${
-                index === currentProfileIndex ? 'bg-[#8B4B6B]' : 'bg-gray-600'
+                index === currentProfileIndex ? 'bg-pink-500' : 'bg-gray-600'
               }`}
             />
           ))}
