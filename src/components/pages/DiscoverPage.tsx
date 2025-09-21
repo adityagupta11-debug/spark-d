@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CollegeDatingAppFrame from '../figma/CollegeDatingAppFrame';
 import { MapPin, GraduationCap, X, Heart } from 'lucide-react';
 
 interface DiscoverPageProps {
@@ -45,6 +46,7 @@ const mockProfiles = [
 export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
   const [profiles, setProfiles] = useState(mockProfiles);
+  const [showDemo, setShowDemo] = useState(false);
 
   const currentProfile = profiles[currentProfileIndex];
 
@@ -160,6 +162,20 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
           {currentProfileIndex + 1} of {profiles.length}
         </p>
       </div>
+
+      {/* Figma Frame Demo Toggle */}
+      <div className="mt-6 text-center">
+        <button onClick={() => setShowDemo(v => !v)} className="text-xs text-yellow-400 underline">
+          {showDemo ? 'Hide Figma frame' : 'Show Figma frame'}
+        </button>
+      </div>
+
+      {showDemo && (
+        <div className="mt-3 border border-white/10 rounded-lg overflow-hidden">
+          <div className="bg-white/5 text-xs px-3 py-2">Figma: College Dating App (embedded)</div>
+          <CollegeDatingAppFrame height={700} />
+        </div>
+      )}
     </div>
   );
 }
