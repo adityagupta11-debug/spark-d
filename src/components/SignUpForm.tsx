@@ -4,6 +4,8 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Textarea } from './ui/textarea';
+import { signUp } from '../lib/auth';
+import { Alert, AlertDescription } from './ui/alert';
 
 export function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -19,6 +21,9 @@ export function SignUpForm() {
   });
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -36,14 +41,78 @@ export function SignUpForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Sign up data:', formData);
-    // Handle sign up logic here
+    setError('');
+    setIsLoading(true);
+
+    try {
+      // Validate passwords match
+      if (formData.password !== formData.confirmPassword) {
+        throw new Error('Passwords do not match');
+      }
+
+      // Validate required fields
+      if (!formData.firstName || !formData.lastName || !formData.email || 
+          !formData.password || !formData.age || !formData.major || !formData.year) {
+        throw new Error('Please fill in all required fields');
+      }
+
+      // Validate ASU email
+      if (!formData.email.endsWith('@asu.edu')) {
+        throw new Error('Please use your ASU email address');
+      }
+
+      // Create user account
+      await signUp(formData.email, formData.password, {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        age: formData.age,
+        major: formData.major,
+        year: formData.year,
+        bio: formData.bio
+      });
+
+      setSuccess(true);
+    } catch (error: any) {
+      setError(error.message || 'An error occurred during sign up');
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  // Show success message
+  if (success) {
+    return (
+      <div className="w-full max-w-md mx-auto text-center">
+        <div className="bg-green-900/20 border border-green-700/30 rounded-lg p-6">
+          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl">✓</span>
+          </div>
+          <h2 className="text-white text-xl mb-2">Account Created Successfully!</h2>
+          <p className="text-green-200/80 mb-4">
+            We've sent a verification email to <strong>{formData.email}</strong>. 
+            Please check your inbox and click the verification link to activate your account.
+          </p>
+          <p className="text-green-200/60 text-sm">
+            Once verified, you'll be able to sign in and start connecting with fellow Sun Devils!
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-md mx-auto">
+      {/* Error message */}
+      {error && (
+        <Alert className="mb-6 bg-red-900/20 border-red-700/30">
+          <AlertDescription className="text-red-200">
+            {error}
+          </AlertDescription>
+        </Alert>
+      )}
+
       {/* Progress indicator */}
       <div className="flex justify-center mb-8">
         <div className="flex space-x-2">
@@ -246,8 +315,9 @@ export function SignUpForm() {
             <Button
               type="submit"
               className="bg-yellow-600 hover:bg-yellow-700 text-black ml-auto"
+              disabled={isLoading}
             >
-              Create Account
+              {isLoading ? 'Creating Account...' : 'Create Account'}
             </Button>
           )}
         </div>
