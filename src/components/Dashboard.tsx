@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// @ts-ignore - local environment may not resolve lucide-react types
 import { Heart, Users, User, Settings, MapPin, GraduationCap } from 'lucide-react';
 import DiscoverPage from './pages/DiscoverPage';
 import MatchesPage from './pages/MatchesPage';
@@ -32,9 +33,9 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
+    <div className="min-h-screen brand-gradient flex flex-col">
       {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4 flex-shrink-0">
+      <div className="brand-header px-4 py-4 flex-shrink-0 border-b border-white/10">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
             <span className="text-white text-lg">🌵</span>
@@ -52,14 +53,14 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
       </div>
 
       {/* Bottom Navigation */}
-      <div className="bg-black border-t border-gray-800 flex-shrink-0">
+      <div className="bg-black/60 glass-card border-t border-white/10 flex-shrink-0">
         <div className="flex">
           <button
             onClick={() => setActiveTab('discover')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'discover' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'brand-active' 
+                : 'text-gray-300 hover:text-white'
             }`}
           >
             <Heart size={24} />
@@ -70,8 +71,8 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
             onClick={() => setActiveTab('matches')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'matches' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'brand-active' 
+                : 'text-gray-300 hover:text-white'
             }`}
           >
             <Users size={24} />
@@ -82,8 +83,8 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
             onClick={() => setActiveTab('profile')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'profile' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'brand-active' 
+                : 'text-gray-300 hover:text-white'
             }`}
           >
             <User size={24} />
@@ -94,8 +95,8 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
             onClick={() => setActiveTab('settings')}
             className={`flex-1 py-4 px-2 flex flex-col items-center space-y-1 transition-colors ${
               activeTab === 'settings' 
-                ? 'bg-[#8B4B6B] text-white' 
-                : 'text-gray-400 hover:text-white'
+                ? 'brand-active' 
+                : 'text-gray-300 hover:text-white'
             }`}
           >
             <Settings size={24} />

@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore - local environment may not resolve lucide-react types
 import { Edit3, MapPin, GraduationCap } from 'lucide-react';
 
 interface ProfilePageProps {
@@ -11,11 +12,11 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
   const interests = userProfile?.interests || ['Sun Devils Sports', 'Study Groups', 'Campus Life'];
 
   return (
-    <div className="flex-1 bg-black overflow-y-auto">
+    <div className="flex-1 overflow-y-auto">
       {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4 flex items-center justify-between">
+      <div className="brand-header px-4 py-4 flex items-center justify-between border-b border-white/10">
         <h1 className="text-white text-xl font-semibold">Your Profile</h1>
-        <button className="bg-black/20 hover:bg-black/30 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
+        <button className="glass-card text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
           <Edit3 size={16} />
           <span>Edit</span>
         </button>
@@ -24,7 +25,7 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
       <div className="px-4 py-6">
         {/* Profile Photo */}
         <div className="relative mb-6">
-          <div className="w-full h-64 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-2xl overflow-hidden">
+          <div className="w-full h-64 glass-card rounded-2xl overflow-hidden border border-white/10">
             {/* Hot Air Balloon Scene - matching the Figma design */}
             <div className="w-full h-full bg-gradient-to-b from-blue-300 to-yellow-200 relative">
               {/* Mountains in background */}
@@ -55,7 +56,7 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
         </div>
 
         {/* Profile Info Grid */}
-        <div className="bg-gray-900 rounded-2xl p-6 mb-6">
+        <div className="glass-card rounded-2xl p-6 mb-6">
           <div className="grid grid-cols-2 gap-6">
             {/* Name */}
             <div>
@@ -89,7 +90,7 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
         </div>
 
         {/* Bio */}
-        <div className="bg-gray-900 rounded-2xl p-6 mb-6">
+        <div className="glass-card rounded-2xl p-6 mb-6">
           <h3 className="text-gray-400 text-sm font-medium mb-3">Bio</h3>
           <p className="text-gray-300 leading-relaxed">
             {userProfile?.bio || "Tell other Sun Devils about yourself! What do you love about ASU? What are you looking for?"}
@@ -97,13 +98,13 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
         </div>
 
         {/* Interests */}
-        <div className="bg-gray-900 rounded-2xl p-6">
+        <div className="glass-card rounded-2xl p-6">
           <h3 className="text-gray-400 text-sm font-medium mb-4">Interests</h3>
           <div className="flex flex-wrap gap-2">
             {interests.map((interest, index) => (
               <span
                 key={index}
-                className="bg-[#8B4B6B] text-white px-4 py-2 rounded-full text-sm font-medium"
+                className="brand-chip px-4 py-2 rounded-full text-sm font-medium"
               >
                 {interest}
               </span>

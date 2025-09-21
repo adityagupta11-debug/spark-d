@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import campusImage from './assets/24b0ce647cc38b3904beeda35147b930b1688d81.png';
-import sparkLogo from './assets/be0089ef2be8ba12e1e7b021047e4ab156b62992.png';
+import React, { useState } from 'react';
 import { SignUpForm } from './components/SignUpForm';
 import { SignInForm } from './components/SignInForm';
 import { Button } from './components/ui/button';
@@ -39,21 +37,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Image with Blur */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={campusImage} 
-          alt="ASU Campus" 
-          className="w-full h-full object-cover blur-sm"
-        />
-        <div className="absolute inset-0 bg-black/75"></div>
-      </div>
-
+    <div className="min-h-screen relative brand-gradient">
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
-        <div className="bg-[#8B4B6B] px-6 py-4">
+        <div className="brand-header px-6 py-4 border-b border-white/10">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
               <span className="text-white text-lg">🌵</span>
@@ -70,22 +58,22 @@ export default function App() {
           <div className="max-w-2xl mx-auto">
             {/* Welcome Section */}
             <div className="text-center mb-12">
-              <h1 className="text-white text-3xl mb-4">
+              <h1 className="text-white text-3xl mb-3">
                 Welcome to Sun Devil Match
               </h1>
-              <p className="text-gray-400 text-lg max-w-md mx-auto">
+              <p className="text-gray-300 text-lg max-w-md mx-auto">
                 Connect with fellow Sun Devils and discover your perfect match on campus
               </p>
             </div>
 
             {/* Sign Up/Sign In Form */}
-            <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+            <div className="glass-card rounded-2xl p-8">
               {isSignUp ? <SignUpForm /> : <SignInForm onToggleMode={() => setIsSignUp(true)} />}
             </div>
 
             {/* Footer */}
             <div className="text-center mt-8">
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-300 text-sm">
                 {isSignUp ? (
                   <>
                     Already have an account?{' '}
@@ -113,7 +101,7 @@ export default function App() {
             </div>
 
             {/* ASU Verification Notice */}
-            <div className="mt-8 p-4 bg-yellow-900/20 border border-yellow-700/30 rounded-lg">
+            <div className="mt-8 glass-card rounded-lg p-4">
               <div className="flex items-start space-x-3">
                 <div className="w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-black text-xs">ⓘ</span>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// @ts-ignore - local environment may not resolve lucide-react types
 import { MapPin, GraduationCap, X, Heart } from 'lucide-react';
 
 interface DiscoverPageProps {
@@ -70,10 +71,10 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
   }
 
   return (
-    <div className="flex-1 bg-black px-4 py-6 flex flex-col">
+    <div className="flex-1 px-4 py-6 flex flex-col">
       {/* Profile Card */}
       <div className="flex-1 max-w-sm mx-auto w-full">
-        <div className="bg-white rounded-3xl overflow-hidden shadow-2xl h-full flex flex-col">
+        <div className="glass-card rounded-3xl overflow-hidden h-full flex flex-col border border-white/10">
           {/* Profile Image */}
           <div className="relative h-96 bg-gray-200">
             <div className="absolute inset-0 flex items-center justify-center">
@@ -84,7 +85,7 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
           </div>
 
           {/* Profile Info */}
-          <div className="flex-1 bg-black text-white p-6">
+          <div className="flex-1 text-white p-6">
             {/* Name and Distance */}
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
@@ -112,7 +113,7 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
               {currentProfile.interests.map((interest, index) => (
                 <span
                   key={index}
-                  className="bg-[#8B4B6B] text-white px-3 py-1 rounded-full text-sm"
+                  className="brand-chip px-3 py-1 rounded-full text-sm"
                 >
                   {interest}
                 </span>
@@ -135,7 +136,7 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
               
               <button
                 onClick={() => handleSwipe('right')}
-                className="w-14 h-14 bg-yellow-500 hover:bg-yellow-600 rounded-full flex items-center justify-center transition-colors"
+                className="w-14 h-14 accent-btn rounded-full flex items-center justify-center"
               >
                 <span className="text-white text-2xl">🍴</span>
               </button>
@@ -151,7 +152,7 @@ export default function DiscoverPage({ userProfile }: DiscoverPageProps) {
             <div
               key={index}
               className={`w-2 h-2 rounded-full ${
-                index === currentProfileIndex ? 'bg-[#8B4B6B]' : 'bg-gray-600'
+                index === currentProfileIndex ? 'brand-active' : 'bg-gray-600'
               }`}
             />
           ))}
