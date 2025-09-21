@@ -1,135 +1,146 @@
-import React, { useState } from 'react';
-import campusImage from './assets/24b0ce647cc38b3904beeda35147b930b1688d81.png';
-import sparkLogo from './assets/be0089ef2be8ba12e1e7b021047e4ab156b62992.png';
-import { SignUpForm } from './components/SignUpForm';
-import { SignInForm } from './components/SignInForm';
+import { useState } from 'react';
+import { SwipeScreen } from './components/SwipeScreen';
+import { MatchesScreen } from './components/MatchesScreen';
+import { DatePlanningScreen } from './components/DatePlanningScreen';
+import { ProfileScreen } from './components/ProfileScreen';
+import { SettingsScreen } from './components/SettingsScreen';
+import { ThemeProvider } from './components/ThemeProvider';
+import { Profile } from './components/ProfileCard';
 import { Button } from './components/ui/button';
-import { useAuth } from './contexts/AuthContext';
-import { signOutUser } from './lib/auth';
-import Dashboard from './components/Dashboard';
+import { Heart, Users, User, Calendar, Settings } from 'lucide-react';
 
-export default function App() {
-  const [isSignUp, setIsSignUp] = useState(true);
-  const { user, userProfile, loading } = useAuth();
+type Screen = 'swipe' | 'matches' | 'profile' | 'date-planning' | 'settings';
 
-  const handleSignOut = async () => {
-    try {
-      await signOutUser();
-    } catch (error) {
-      console.error('Sign out error:', error);
+function AppContent() {
+  const [currentScreen, setCurrentScreen] = useState<Screen>('swipe');
+  const [matches, setMatches] = useState<Profile[]>([]);
+  const [selectedMatch, setSelectedMatch] = useState<Profile | null>(null);
+
+  const handleMatch = (profile: Profile) => {
+    setMatches(prev => {
+      // Prevent duplicate matches by checking if profile already exists
+      if (prev.some(match => match.id === profile.id)) {
+        return prev;
+      }
+      return [...prev, profile];
+    });
+  };
+
+  const handlePlanDate = (profile: Profile) => {
+    setSelectedMatch(profile);
+    setCurrentScreen('date-planning');
+  };
+
+  const handleBackFromDatePlanning = () => {
+    setSelectedMatch(null);
+    setCurrentScreen('matches');
+  };
+
+  const renderScreen = () => {
+    switch (currentScreen) {
+      case 'swipe':
+        return <SwipeScreen onMatch={handleMatch} />;
+      case 'matches':
+        return <MatchesScreen matches={matches} onPlanDate={handlePlanDate} />;
+      case 'profile':
+        return <ProfileScreen />;
+      case 'settings':
+        return <SettingsScreen />;
+      case 'date-planning':
+        return (
+          <DatePlanningScreen 
+            selectedMatch={selectedMatch} 
+            onBack={handleBackFromDatePlanning}
+          />
+        );
+      default:
+        return <SwipeScreen onMatch={handleMatch} />;
     }
   };
 
-  // Show loading state
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <div className="text-white text-xl">Loading Spark'd...</div>
-          <p className="text-gray-400 mt-2">Please wait while we set up your experience</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Show authenticated user dashboard
-  if (user) {
-    return <Dashboard user={user} userProfile={userProfile} onSignOut={handleSignOut} />;
-  }
-
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Background Image with Blur */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={campusImage} 
-          alt="ASU Campus" 
-          className="w-full h-full object-cover blur-sm"
-        />
-        <div className="absolute inset-0 bg-black/75"></div>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10">
-        {/* Header */}
-        <div className="brand-header px-6 py-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center shadow-md">
-              <span className="text-white text-lg">🌵</span>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-4 shadow-lg" style={{background: 'linear-gradient(to right, #8C1D40, #7A1936)'}}>
+        <div className="max-w-md mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+              🌵
             </div>
             <div>
-              <h1 className="text-white font-semibold text-lg tracking-wide">Sun Devil Match</h1>
-              <p className="text-white/80 text-sm">ASU Dating & Date Planning</p>
+              <h1 className="text-lg">Sun Devil Match</h1>
+              <p className="text-xs text-yellow-100">ASU Dating & Date Planning</p>
             </div>
           </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="px-6 py-12">
-          <div className="max-w-2xl mx-auto">
-            {/* Welcome Section */}
-            <div className="text-center mb-12">
-              <h1 className="text-white text-3xl mb-4 leading-none">
-                Find your spark at ASU
-              </h1>
-              <p className="text-gray-400 text-lg max-w-md mx-auto">
-                Meet fellow Sun Devils, plan great dates, and make meaningful connections.
-              </p>
+          {matches.length > 0 && currentScreen === 'swipe' && (
+            <div className="bg-white/20 px-2 py-1 rounded-full text-xs">
+              {matches.length} match{matches.length !== 1 ? 'es' : ''}
             </div>
-
-            {/* Sign Up/Sign In Form */}
-            <div className="glass-card rounded-2xl p-8">
-              {isSignUp ? <SignUpForm /> : <SignInForm onToggleMode={() => setIsSignUp(true)} />}
-            </div>
-
-            {/* Footer */}
-            <div className="text-center mt-8">
-              <p className="text-gray-500 text-sm">
-                {isSignUp ? (
-                  <>
-                    Already have an account?{' '}
-                    <Button 
-                      variant="link" 
-                      className="text-yellow-500 hover:text-yellow-400 p-0 h-auto"
-                      onClick={() => setIsSignUp(false)}
-                    >
-                      Sign In
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    Don't have an account?{' '}
-                    <Button 
-                      variant="link" 
-                      className="text-yellow-500 hover:text-yellow-400 p-0 h-auto"
-                      onClick={() => setIsSignUp(true)}
-                    >
-                      Sign Up
-                    </Button>
-                  </>
-                )}
-              </p>
-            </div>
-
-            {/* ASU Verification Notice */}
-            <div className="mt-8 p-4 bg-yellow-900/20 border border-yellow-700/30 rounded-lg">
-              <div className="flex items-start space-x-3">
-                <div className="w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-black text-xs">ⓘ</span>
-                </div>
-                <div>
-                  <h4 className="text-yellow-400 font-medium mb-1">ASU Student Verification</h4>
-                  <p className="text-yellow-200/80 text-sm">
-                    Only verified ASU students can join Sun Devil Match. We'll send a verification 
-                    email to your ASU address to confirm your student status.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
+
+      {/* Main Content */}
+      <div className="max-w-md mx-auto bg-background min-h-[calc(100vh-140px)] shadow-xl">
+        {currentScreen !== 'date-planning' && renderScreen()}
+        {currentScreen === 'date-planning' && renderScreen()}
+      </div>
+
+      {/* Bottom Navigation */}
+      {currentScreen !== 'date-planning' && (
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border">
+          <div className="max-w-md mx-auto flex">
+            <Button
+              variant={currentScreen === 'swipe' ? 'default' : 'ghost'}
+              className="flex-1 rounded-none h-16 flex flex-col gap-1"
+              onClick={() => setCurrentScreen('swipe')}
+            >
+              <Heart className="w-5 h-5" />
+              <span className="text-xs">Discover</span>
+            </Button>
+            
+            <Button
+              variant={currentScreen === 'matches' ? 'default' : 'ghost'}
+              className="flex-1 rounded-none h-16 flex flex-col gap-1 relative"
+              onClick={() => setCurrentScreen('matches')}
+            >
+              <Users className="w-5 h-5" />
+              <span className="text-xs">Matches</span>
+              {matches.length > 0 && (
+                <div className="absolute top-2 right-2 w-5 h-5 text-white rounded-full text-xs flex items-center justify-center" style={{backgroundColor: '#FFC627', color: '#8C1D40'}}>
+                  {matches.length}
+                </div>
+              )}
+            </Button>
+            
+            <Button
+              variant={currentScreen === 'profile' ? 'default' : 'ghost'}
+              className="flex-1 rounded-none h-16 flex flex-col gap-1"
+              onClick={() => setCurrentScreen('profile')}
+            >
+              <User className="w-5 h-5" />
+              <span className="text-xs">Profile</span>
+            </Button>
+            
+            <Button
+              variant={currentScreen === 'settings' ? 'default' : 'ghost'}
+              className="flex-1 rounded-none h-16 flex flex-col gap-1"
+              onClick={() => setCurrentScreen('settings')}
+            >
+              <Settings className="w-5 h-5" />
+              <span className="text-xs">Settings</span>
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
