@@ -22,13 +22,13 @@ const defaultProfile: UserProfile = {
   age: 20,
   major: 'Your Major',
   year: 'Sophomore',
-  bio: 'Tell other Sun Devils about yourself! What do you love about ASU? What are you looking for?',
+  bio: 'Tell other students about yourself! What do you love about college? What are you looking for?',
   photos: ['https://images.unsplash.com/photo-1559686216-552c993a7e64?w=400'],
-  interests: ['Sun Devils Sports', 'Study Groups', 'Campus Life']
+  interests: ['College Sports', 'Study Groups', 'Campus Life']
 };
 
 const availableInterests = [
-  'Sun Devils Sports', 'Basketball', 'Football', 'Baseball',
+  'College Sports', 'Basketball', 'Football', 'Baseball',
   'Hiking', 'Rock Climbing', 'Mountain Biking', 'Running',
   'Photography', 'Art', 'Music', 'Dancing',
   'Coding', 'Engineering', 'Business', 'Psychology',
