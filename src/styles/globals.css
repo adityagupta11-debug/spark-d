@@ -209,3 +209,18 @@
 html {
   font-size: var(--font-size);
 }
+
+/* Figma-specific brand header and bottom nav styles to match design */
+@layer components {
+  .brand-header {
+    background: linear-gradient(to right, #8C1D40, #7A1936);
+    color: #ffffff;
+  }
+  .bottom-nav {
+    background-color: var(--background);
+    border-top: 1px solid var(--border);
+  }
+  .active-tab {
+    color: #ffffff;
+  }
+}
