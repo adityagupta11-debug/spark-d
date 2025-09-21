@@ -12,10 +12,18 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check localStorage first, then system preference, default to dark
-    const savedTheme = localStorage.getItem('sun-devil-match-theme') as Theme;
-    if (savedTheme) {
-      return savedTheme;
+    // Migrate legacy key to new key and read theme
+    const legacyKey = 'sun-devil-match-theme';
+    const newKey = 'sparkd-theme';
+    const legacyTheme = localStorage.getItem(legacyKey) as Theme;
+    const newTheme = localStorage.getItem(newKey) as Theme;
+    if (legacyTheme && !newTheme) {
+      localStorage.setItem(newKey, legacyTheme);
+      localStorage.removeItem(legacyKey);
+      return legacyTheme;
+    }
+    if (newTheme) {
+      return newTheme;
     }
     
     // Check system preference
@@ -35,8 +43,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Add current theme class
     root.classList.add(theme);
     
-    // Save to localStorage
-    localStorage.setItem('sun-devil-match-theme', theme);
+    // Save to localStorage under new key
+    localStorage.setItem('sparkd-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
