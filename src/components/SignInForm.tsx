@@ -4,6 +4,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { signIn } from '../lib/auth';
 import { Alert, AlertDescription } from './ui/alert';
+import { Mail, Lock, LogIn, Sparkles, ArrowRight } from 'lucide-react';
 
 interface SignInFormProps {
   onToggleMode?: () => void;
@@ -48,67 +49,126 @@ export function SignInForm({ onToggleMode }: SignInFormProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="text-center mb-6">
-        <h2 className="text-white text-2xl mb-2">Welcome Back!</h2>
-        <p className="text-gray-400">Sign in to your Spark'd account</p>
+    <div className="w-full max-w-md mx-auto animate-slide-up">
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
+          <Sparkles className="w-4 h-4 text-yellow-400" />
+          <span className="text-yellow-400 text-sm font-medium">Welcome Back</span>
+        </div>
+        <h2 className="text-white text-3xl font-bold mb-2">Sign In to Sun Devil Match</h2>
+        <p className="text-white/60">Continue your journey to find your perfect match</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Error message */}
         {error && (
-          <Alert className="bg-red-900/20 border-red-700/30">
-            <AlertDescription className="text-red-200">
+          <Alert className="bg-red-500/10 border-red-500/20 backdrop-blur-sm animate-slide-in">
+            <AlertDescription className="text-red-300 font-medium">
               {error}
             </AlertDescription>
           </Alert>
         )}
 
-        <div>
-          <Label htmlFor="email" className="text-white">ASU Email</Label>
-          <Input
-            id="email"
-            type="email"
-            value={formData.email}
-            onChange={(e) => handleInputChange('email', e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
-            placeholder="yourname@asu.edu"
-            required
-          />
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-white font-medium flex items-center space-x-2">
+            <Mail className="w-4 h-4 text-yellow-400" />
+            <span>ASU Email</span>
+          </Label>
+          <div className="relative">
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleInputChange('email', e.target.value)}
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all pl-10"
+              placeholder="yourname@asu.edu"
+              required
+            />
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/30" />
+          </div>
         </div>
 
-        <div>
-          <Label htmlFor="password" className="text-white">Password</Label>
-          <Input
-            id="password"
-            type="password"
-            value={formData.password}
-            onChange={(e) => handleInputChange('password', e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
-            placeholder="Enter your password"
-            required
-          />
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <Label htmlFor="password" className="text-white font-medium flex items-center space-x-2">
+              <Lock className="w-4 h-4 text-yellow-400" />
+              <span>Password</span>
+            </Label>
+            <button type="button" className="text-yellow-400 hover:text-yellow-300 text-sm font-medium hover:underline transition-colors">
+              Forgot password?
+            </button>
+          </div>
+          <div className="relative">
+            <Input
+              id="password"
+              type="password"
+              value={formData.password}
+              onChange={(e) => handleInputChange('password', e.target.value)}
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all pl-10"
+              placeholder="Enter your password"
+              required
+            />
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/30" />
+          </div>
         </div>
 
         <Button
           type="submit"
-          className="w-full bg-yellow-600 hover:bg-yellow-700 text-black"
+          className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold py-6 transform hover:scale-105 transition-all shadow-lg flex items-center justify-center space-x-2"
           disabled={isLoading}
         >
-          {isLoading ? 'Signing In...' : 'Sign In'}
+          {isLoading ? (
+            <>
+              <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+              <span>Signing In...</span>
+            </>
+          ) : (
+            <>
+              <LogIn className="w-5 h-5" />
+              <span>Sign In to Your Account</span>
+              <ArrowRight className="w-4 h-4" />
+            </>
+          )}
         </Button>
 
-        <div className="text-center">
-          <p className="text-gray-500 text-sm">
-            Don't have an account?{' '}
-            <Button 
-              variant="link" 
-              className="text-yellow-500 hover:text-yellow-400 p-0 h-auto"
-              onClick={onToggleMode}
-            >
-              Sign Up
-            </Button>
-          </p>
+        {/* Additional Options */}
+        <div className="space-y-4">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/10"></div>
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-transparent px-2 text-white/40">or</span>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <p className="text-white/60">
+              Don't have an account?{' '}
+              <Button 
+                variant="link" 
+                className="text-yellow-400 hover:text-yellow-300 font-semibold p-0 h-auto underline-offset-4 hover:underline"
+                onClick={onToggleMode}
+              >
+                Sign Up Now
+              </Button>
+            </p>
+          </div>
+
+          {/* Security Notice */}
+          <div className="glass rounded-xl p-4 border border-white/10">
+            <div className="flex items-start space-x-3">
+              <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <p className="text-white/60 text-xs leading-relaxed">
+                Your account is protected with enterprise-grade security. 
+                We never share your personal information.
+              </p>
+            </div>
+          </div>
         </div>
       </form>
     </div>
