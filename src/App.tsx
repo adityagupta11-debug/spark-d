@@ -4,6 +4,10 @@ import { MatchesScreen } from './components/MatchesScreen';
 import { DatePlanningScreen } from './components/DatePlanningScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { SettingsScreen } from './components/SettingsScreen';
+import DiscoverPage from './components/pages/DiscoverPage';
+import MatchesPage from './components/pages/MatchesPage';
+import ProfilePage from './components/pages/ProfilePage';
+import SettingsPage from './components/pages/SettingsPage';
 import { ThemeProvider } from './components/ThemeProvider';
 import { Profile } from './components/ProfileCard';
 import { Button } from './components/ui/button';
@@ -15,6 +19,22 @@ function AppContent() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('swipe');
   const [matches, setMatches] = useState<Profile[]>([]);
   const [selectedMatch, setSelectedMatch] = useState<Profile | null>(null);
+  
+  // Mock user data for the profile and settings pages
+  const mockUser = {
+    email: 'user@example.com',
+    displayName: 'John Doe'
+  };
+  
+  const mockUserProfile = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 21,
+    major: 'Computer Science',
+    year: 'junior',
+    bio: 'Love coding, hiking, and meeting new people! Always up for a good conversation.',
+    interests: ['Coding', 'Hiking', 'Music', 'Movies']
+  };
 
   const handleMatch = (profile: Profile) => {
     setMatches(prev => {
@@ -39,13 +59,13 @@ function AppContent() {
   const renderScreen = () => {
     switch (currentScreen) {
       case 'swipe':
-        return <SwipeScreen onMatch={handleMatch} />;
+        return <DiscoverPage userProfile={mockUserProfile} onMatch={handleMatch} />;
       case 'matches':
-        return <MatchesScreen matches={matches} onPlanDate={handlePlanDate} />;
+        return matches.length > 0 ? <MatchesScreen matches={matches} onPlanDate={handlePlanDate} /> : <MatchesPage />;
       case 'profile':
-        return <ProfileScreen />;
+        return <ProfilePage user={mockUser} userProfile={mockUserProfile} />;
       case 'settings':
-        return <SettingsScreen />;
+        return <SettingsPage user={mockUser} userProfile={mockUserProfile} onSignOut={() => console.log('Sign out')} />;
       case 'date-planning':
         return (
           <DatePlanningScreen 
@@ -54,22 +74,22 @@ function AppContent() {
           />
         );
       default:
-        return <SwipeScreen onMatch={handleMatch} />;
+        return <DiscoverPage userProfile={mockUserProfile} onMatch={handleMatch} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-800 to-red-900 text-white p-4 shadow-lg" style={{background: 'linear-gradient(to right, #8C1D40, #7A1936)'}}>
+        <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 shadow-lg">
         <div className="max-w-md mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-              🌵
+              ✨
             </div>
             <div>
-              <h1 className="text-lg">Sun Devil Match</h1>
-              <p className="text-xs text-yellow-100">ASU Dating & Date Planning</p>
+              <h1 className="text-lg">Spark'd</h1>
+              <p className="text-xs text-yellow-100">Where Connections Ignite</p>
             </div>
           </div>
           {matches.length > 0 && currentScreen === 'swipe' && (
@@ -107,7 +127,7 @@ function AppContent() {
               <Users className="w-5 h-5" />
               <span className="text-xs">Matches</span>
               {matches.length > 0 && (
-                <div className="absolute top-2 right-2 w-5 h-5 text-white rounded-full text-xs flex items-center justify-center" style={{backgroundColor: '#FFC627', color: '#8C1D40'}}>
+                <div className="absolute top-2 right-2 w-5 h-5 bg-pink-500 text-white rounded-full text-xs flex items-center justify-center">
                   {matches.length}
                 </div>
               )}

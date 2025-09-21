@@ -7,7 +7,7 @@ interface SwipeScreenProps {
   onMatch: (profile: Profile) => void;
 }
 
-// Mock profiles for ASU students
+// Mock profiles for college students
 const mockProfiles: Profile[] = [
   {
     id: '1',
@@ -15,9 +15,9 @@ const mockProfiles: Profile[] = [
     age: 20,
     major: 'Business Administration',
     year: 'Junior',
-    bio: 'Love hiking Camelback Mountain and trying new restaurants in Tempe! Always down for a study session at the MU or catching a Sun Devils game. 🌵',
+    bio: 'Love hiking and trying new restaurants! Always down for a study session or catching a game with friends. 🌟',
     photos: ['https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400'],
-    interests: ['Hiking', 'Sun Devils Sports', 'Photography', 'Coffee', 'Business'],
+    interests: ['Hiking', 'Sports', 'Photography', 'Coffee', 'Business'],
     distance: 0.5
   },
   {
@@ -26,7 +26,7 @@ const mockProfiles: Profile[] = [
     age: 21,
     major: 'Computer Science',
     year: 'Senior',
-    bio: 'Tech enthusiast and rock climbing addict. Building the next big app between classes. Let\'s grab boba in Tempe Town Lake area! 🧗‍♂️',
+    bio: 'Tech enthusiast and rock climbing addict. Building the next big app between classes. Let\'s grab boba and explore the city! 🧗‍♂️',
     photos: ['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400'],
     interests: ['Rock Climbing', 'Coding', 'Gaming', 'Boba', 'Startups'],
     distance: 1.2
@@ -37,7 +37,7 @@ const mockProfiles: Profile[] = [
     age: 19,
     major: 'Psychology',
     year: 'Sophomore',
-    bio: 'Passionate about mental health advocacy and desert photography. Love exploring Old Town Scottsdale and Phoenix art scene. Looking for genuine connections! 🎨',
+    bio: 'Passionate about mental health advocacy and photography. Love exploring the local art scene and finding genuine connections! 🎨',
     photos: ['https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400'],
     interests: ['Psychology', 'Art', 'Photography', 'Yoga', 'Advocacy'],
     distance: 2.1
@@ -48,7 +48,7 @@ const mockProfiles: Profile[] = [
     age: 22,
     major: 'Engineering',
     year: 'Senior',
-    bio: 'Mechanical engineer who loves working on cars and mountain biking South Mountain trails. Always up for late night In-N-Out runs! 🚗',
+    bio: 'Mechanical engineer who loves working on cars and mountain biking. Always up for late night food runs and adventures! 🚗',
     photos: ['https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400'],
     interests: ['Mountain Biking', 'Cars', 'Engineering', 'Mechanics', 'Outdoors'],
     distance: 0.8
@@ -59,9 +59,9 @@ const mockProfiles: Profile[] = [
     age: 20,
     major: 'Journalism',
     year: 'Junior',
-    bio: 'Aspiring journalist covering ASU events for The State Press. Love live music at venues like Crescent Ballroom and exploring downtown Phoenix! 📰',
+    bio: 'Aspiring journalist covering local events. Love live music at local venues and exploring the downtown scene! 📰',
     photos: ['https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400'],
-    interests: ['Journalism', 'Live Music', 'Writing', 'Events', 'Phoenix'],
+    interests: ['Journalism', 'Live Music', 'Writing', 'Events', 'City Life'],
     distance: 1.5
   }
 ];
@@ -91,7 +91,7 @@ export function SwipeScreen({ onMatch }: SwipeScreenProps) {
         <Sparkles className="w-16 h-16 text-primary mb-4" />
         <h2 className="text-xl mb-2">No more profiles!</h2>
         <p className="text-muted-foreground text-center">
-          Check back later for new Sun Devils to meet!
+          Check back later for new people to meet!
         </p>
       </div>
     );
@@ -108,10 +108,10 @@ export function SwipeScreen({ onMatch }: SwipeScreenProps) {
             exit={{ opacity: 0, scale: 0.8 }}
             className="flex flex-col items-center justify-center h-full"
           >
-            <div className="text-white rounded-2xl p-8 text-center max-w-sm" style={{background: 'linear-gradient(to right, #8C1D40, #7A1936)'}}>
-              <div className="text-6xl mb-4">🍽️</div>
+            <div className="text-white rounded-2xl p-8 text-center max-w-sm bg-gradient-to-r from-purple-600 to-pink-600">
+              <div className="text-6xl mb-4">✨</div>
               <h2 className="text-2xl mb-2">It's a Match! 🎉</h2>
-              <p>You and {showMatch.name} both forked up!</p>
+              <p>You and {showMatch.name} sparked a connection!</p>
               <p className="text-sm mt-2 opacity-90">Time to plan the perfect date!</p>
             </div>
           </motion.div>

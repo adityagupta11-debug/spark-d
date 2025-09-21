@@ -21,7 +21,7 @@ export default function MatchesPage() {
         </h2>
         
         <p className="text-gray-400 text-base leading-relaxed">
-          Keep swiping to find your perfect Sun Devil match!
+          Keep swiping to find your perfect match!
         </p>
       </div>
     </div>

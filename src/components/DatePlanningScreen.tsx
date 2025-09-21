@@ -76,7 +76,7 @@ const dateIdeas: DateIdea[] = [
   {
     id: '5',
     title: 'Mill Avenue District',
-    description: 'Dinner and drinks in ASU\'s vibrant entertainment district',
+    description: 'Dinner and drinks in the vibrant entertainment district',
     location: 'Tempe, AZ',
     duration: '3-4 hours',
     priceRange: '$50-80',

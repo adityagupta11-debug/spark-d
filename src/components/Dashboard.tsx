@@ -37,11 +37,11 @@ export default function Dashboard({ user, userProfile, onSignOut }: DashboardPro
       <div className="brand-header px-4 py-4 flex-shrink-0">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center shadow-md">
-            <span className="text-white text-lg">🌵</span>
+            <span className="text-white text-lg">✨</span>
           </div>
           <div>
-            <h1 className="text-white font-semibold text-lg tracking-wide">Sun Devil Match</h1>
-            <p className="text-white/80 text-sm">ASU Dating & Date Planning</p>
+            <h1 className="text-white font-semibold text-lg tracking-wide">Spark'd</h1>
+            <p className="text-white/80 text-sm">Where Connections Ignite</p>
           </div>
         </div>
       </div>

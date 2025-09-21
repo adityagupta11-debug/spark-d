@@ -8,12 +8,12 @@ interface ProfilePageProps {
 
 export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
   // Mock interests for now - in a real app this would come from userProfile
-  const interests = userProfile?.interests || ['Sun Devils Sports', 'Study Groups', 'Campus Life'];
+  const interests = userProfile?.interests || ['Sports', 'Study Groups', 'Social Life'];
 
   return (
     <div className="flex-1 bg-black overflow-y-auto">
       {/* Header */}
-      <div className="bg-[#8B4B6B] px-4 py-4 flex items-center justify-between">
+      <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-4 flex items-center justify-between">
         <h1 className="text-white text-xl font-semibold">Your Profile</h1>
         <button className="bg-black/20 hover:bg-black/30 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
           <Edit3 size={16} />
@@ -92,7 +92,7 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
         <div className="bg-gray-900 rounded-2xl p-6 mb-6">
           <h3 className="text-gray-400 text-sm font-medium mb-3">Bio</h3>
           <p className="text-gray-300 leading-relaxed">
-            {userProfile?.bio || "Tell other Sun Devils about yourself! What do you love about ASU? What are you looking for?"}
+            {userProfile?.bio || "Tell others about yourself! What do you love doing? What are you looking for?"}
           </p>
         </div>
 
@@ -103,7 +103,7 @@ export default function ProfilePage({ user, userProfile }: ProfilePageProps) {
             {interests.map((interest, index) => (
               <span
                 key={index}
-                className="bg-[#8B4B6B] text-white px-4 py-2 rounded-full text-sm font-medium"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium"
               >
                 {interest}
               </span>
