@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ProfileCard, Profile } from './ProfileCard';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 
 interface SwipeScreenProps {
